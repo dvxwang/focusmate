@@ -1,6 +1,6 @@
 'use strict';
 var chalk = require('chalk');
-// var db = require('./database');
+var db = require('./database');
 
 var server = require('http').createServer();
 
@@ -14,8 +14,8 @@ var startServer = function () {
 };
 
 startServer();
-// db.sync().then(startServer)
-// .catch(function (err) {
-//     console.error(chalk.red(err.stack));
-//     process.kill(1);
-// });
+db.sync().then(startServer)
+.catch(function (err) {
+    console.error(chalk.red(err.stack));
+    process.kill(1);
+});
