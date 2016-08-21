@@ -1,7 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-	You've reached....something
+	<div class='leftPanel'>
+		<div class='panelSpace'></div>
+		<div class='outputPanel'>
+			<div class='panelHeader'>
+				Make a Session
+			</div>
+			<div class="inputSection">
+				<div class="inputParam">
+					Email
+				</div>
+				<div class="inputParam">
+					<input id='email' type="text">
+				</div>
+			</div>
+			<div class="inputSection">
+				<div class="inputParam">
+					Time
+				</div>
+				<div class="inputParam">
+					<input type="text" value="Leave Blank">
+				</div>
+			</div>
+			<button>Submit</button>
+		</div>
+	</div>
+	<div class='rightPanel'>
+		<div class='panelSpace'></div>
+		<div class='outputPanel'>
+			<div class='panelHeader'>
+				Available Sessions
+			</div>
+			<div id='sessionResponse'></div>
+		</div>
+	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		console.log("Page loading correctly");
+		
+		function retrieve(){
+			$.get('/api/', function(response){
+					console.log("res: ",response);
+					$('#sessionResponse').text(JSON.stringify(response));
+				}
+			)
+		}
+
+		function submit(){
+			$.post('/api/', {email: $('#email').val()}, function(response){
+					$('#email').val('');
+					retrieve();
+				}
+			)
+		}
+
+		retrieve();
+
+		$('button').click(submit);
+	})
+</script>
+<style>
+	html, body {
+		height: 100%;
+		width: 100%;
+		margin: 0;
+	}
+	.leftPanel{
+		width: 50%;
+		height: 100%;
+		float: left;
+		background-color: green;
+	}
+	.rightPanel{
+		width: 50%;
+		height: 100%;
+		margin-left: 50%;
+		background-color: red;
+	}
+	.panelSpace {
+		width: 100%;
+		height: 20%;
+	}
+	.outputPanel {
+		height: 60%;
+		width: 60%;
+		margin: 0 20%;
+		background-color: white;
+	}
+	.panelHeader {
+		width: 100%;
+		height: 10%;
+		font-size: 20px;
+		text-align: center;
+	}
+	#sessionResponse{
+		overflow-y: auto;
+		height: 80%;
+	}
+</style>
+</hmtl>
+

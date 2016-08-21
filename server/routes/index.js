@@ -14,7 +14,7 @@ module.exports = function (db) {
     app.use(bodyParser.json()); // support json encoded bodies
     app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-    // app.use('/api', require('./routes'));
+    app.use('/api', require('./routes.js'));
 
     /*
      This middleware will catch any URLs resembling a file extension
