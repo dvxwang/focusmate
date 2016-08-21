@@ -7,7 +7,7 @@ var routes = require('./routes')(db);
 server.on('request', routes);
 
 var startServer = function () {
-    var PORT = 1234;
+    var PORT = (process.env.PORT || 1234);
 
     server.listen(PORT, function () {
         console.log(chalk.blue('Server started on port', chalk.magenta(PORT)));
