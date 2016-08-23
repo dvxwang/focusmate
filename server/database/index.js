@@ -6,6 +6,6 @@ var db = new Sequelize('postgres://nrmqbrvzvjjrgl:vyXH0LwfO9eMGMaeWU2nwOuHt2@ec2
 
 require('./models/sessions')(db);
 
-var Lecture = db.model('sessions');
+db.sync({ force: true });
 
 module.exports = db;
