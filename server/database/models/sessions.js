@@ -5,19 +5,17 @@ var Sequelize = require('sequelize');
 module.exports = function (db) {
 
     return db.define('sessions', {
+        name: {
+            type: Sequelize.STRING,
+        },
         email: {
             type: Sequelize.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
         },
-        time: {
-            type: Sequelize.DATE,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+        requestTime: {
+            type: Sequelize.STRING,
+        },
+        timeZone: {
+            type: Sequelize.STRING,
         },
     });
 };
