@@ -1,7 +1,7 @@
 'use strict';
 var router = require('express').Router();
 var db = require('../database')
-var Sessions = db.model('sessions')
+var Sessions = db.model('session')
 module.exports = router;
 
 router.get('/', function(req, res, next) {

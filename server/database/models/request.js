@@ -4,17 +4,17 @@ var Sequelize = require('sequelize');
 
 module.exports = function (db) {
 
-    return db.define('session', {
-        requestOne: {
+    return db.define('request', {
+        requestTime: {
             type: Sequelize.STRING,
         },
-        requestTwo: {
+        timeZone: {
             type: Sequelize.STRING,
         },
-        sessionTime: {
+        matched: {
             type: Sequelize.STRING,
         },
-        cancellation: {
+        cancelled: {
             type: Sequelize.STRING,
         }
     });
